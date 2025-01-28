@@ -9,12 +9,12 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
 if(isset($_GET['delid']))
 {
 $rid=intval($_GET['delid']);
-$sql="delete from tblstudent where ID=:rid";
+$sql="delete from tblstudent3 where ID=:rid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 $query->execute();
  echo "<script>alert('Data deleted');</script>"; 
-  echo "<script>window.location.href = 'manage-students.php'</script>";     
+  echo "<script>window.location.href = 'manage-students-BCA2.php'</script>";     
 
 
 }
@@ -52,7 +52,7 @@ $query->execute();
         <div class="main-panel">
           <div class="content-wrapper">
              <div class="page-header">
-              <h3 class="page-title"> BCA I </h3>
+              <h3 class="page-title"> BCA III </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
@@ -96,7 +96,7 @@ $query->execute();
   $next_page = $page_no + 1;
   $adjacents = "2"; 
  
-        $ret = "SELECT ID FROM tblstudent";
+        $ret = "SELECT ID FROM tblstudent3";
 $query1 = $dbh -> prepare($ret);
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
@@ -104,13 +104,16 @@ $total_records=$query1->rowCount();
   //$total_records = $total_records['total_records'];
   $total_no_of_pages = ceil($total_records / $total_records_per_page);
   $second_last = $total_no_of_pages - 1;
-       $ret = "SELECT ID FROM tblstudent";
+       $ret = "SELECT ID FROM tblstudent3";
 $query1 = $dbh -> prepare($ret);
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $total_rows=$query1->rowCount();
 $total_pages = ceil($total_rows / $total_no_of_pages);
-$sql="SELECT tblstudent.StuID,tblstudent.ID as sid,tblstudent.StudentName,tblstudent.StudentEmail,tblstudent.DateofAdmission,tblclass.ClassName,tblclass.Section from tblstudent join tblclass on tblclass.ID=tblstudent.StudentClass LIMIT $offset, $total_records_per_page";
+$sql = "SELECT tblstudent3.StuID, tblstudent3.ID as sid, tblstudent3.StudentName, tblstudent3.StudentEmail, tblstudent3.DateofAdmission, tblclass.ClassName, tblclass.Section 
+        FROM tblstudent3 
+        JOIN tblclass ON tblclass.ID = tblstudent3.StudentClass 
+        LIMIT $offset, $total_records_per_page";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -130,7 +133,7 @@ foreach($results as $row)
                             <td><?php  echo htmlentities($row->DateofAdmission);?></td>
                             <td>
                               <div><a href="edit-student-detail.php?editid=<?php echo htmlentities ($row->sid);?>" class="btn btn-info btn-xs"  target="blank">Edit</a>
-                                                 <a href="manage-students.php?delid=<?php echo ($row->sid);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger btn-xs"> Delete</a></div>
+                                                 <a href="manage-students-BCA3.php?delid=<?php echo ($row->sid);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger btn-xs"> Delete</a></div>
                             </td> 
                           </tr><?php $cnt=$cnt+1;}} ?>
                         </tbody>

@@ -23,7 +23,7 @@ $query->execute();
 <html lang="en">
   <head>
    
-    <title>Student  Management System|||Manage Class</title>
+    <title>Student  Management System|||BCA I</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
@@ -52,11 +52,11 @@ $query->execute();
         <div class="main-panel">
           <div class="content-wrapper">
              <div class="page-header">
-              <h3 class="page-title"> Manage Class </h3>
+              <h3 class="page-title"> Manage Students </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page"> Manage Class</li>
+                  <li class="breadcrumb-item active" aria-current="page"> BCA I</li>
                 </ol>
               </nav>
             </div>
@@ -65,17 +65,19 @@ $query->execute();
                 <div class="card">
                   <div class="card-body">
                     <div class="d-sm-flex align-items-center mb-4">
-                      <h4 class="card-title mb-sm-0">Manage Class</h4>
-                      <a href="#" class="text-dark ml-auto mb-3 mb-sm-0"> View all Classes</a>
+                      <h4 class="card-title mb-sm-0">Manage Students</h4>
+                      <a href="#" class="text-dark ml-auto mb-3 mb-sm-0"> View all Students</a>
                     </div>
                     <div class="table-responsive border rounded p-1">
                       <table class="table">
                         <thead>
                           <tr>
-                            <th class="font-weight-bold">S.No</th>
-                            <th class="font-weight-bold">Class Name</th>
-                            <th class="font-weight-bold">Section</th>
-                            <th class="font-weight-bold">Creation Date</th>
+                          <th class="font-weight-bold">S.No</th>
+                            <th class="font-weight-bold">Student ID</th>
+                            <!-- <th class="font-weight-bold">Student Class</th> -->
+                            <th class="font-weight-bold">Student Name</th>
+                            <th class="font-weight-bold">Student Email</th>
+                            <th class="font-weight-bold">Admissin Date</th>
                             <th class="font-weight-bold">Action</th>
                             
                           </tr>
@@ -90,13 +92,13 @@ $query->execute();
         // Formula for pagination
         $no_of_records_per_page =15;
         $offset = ($pageno-1) * $no_of_records_per_page;
-       $ret = "SELECT ID FROM tblclass";
+       $ret = "SELECT ID FROM tblstudent";
 $query1 = $dbh -> prepare($ret);
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $total_rows=$query1->rowCount();
 $total_pages = ceil($total_rows / $no_of_records_per_page);
-$sql="SELECT * from tblclass LIMIT $offset, $no_of_records_per_page";
+$sql="SELECT * from tblstudent LIMIT $offset, $no_of_records_per_page";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -108,13 +110,15 @@ foreach($results as $row)
 {               ?>   
                           <tr>
                            
-                            <td><?php echo htmlentities($cnt);?></td>
-                            <td><?php  echo htmlentities($row->ClassName);?></td>
-                            <td><?php  echo htmlentities($row->Section);?></td>
-                            <td><?php  echo htmlentities($row->CreationDate);?></td>
+                          <td><?php echo htmlentities($cnt);?></td>
+                            <td><?php  echo htmlentities($row->StuID);?></td>
+                            <!-- <td><?php  echo htmlentities($row->ClassName);?> <?php  echo htmlentities($row->Section);?></td> -->
+                            <td><?php  echo htmlentities($row->StudentName);?></td>
+                            <td><?php  echo htmlentities($row->StudentEmail);?></td>
+                            <td><?php  echo htmlentities($row->DateofAdmission);?></td>
                             <td>
                               <div><a href="edit-class-detail.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-info btn-xs">Edit</a>
-                                                 <a href="manage-class.php?delid=<?php echo ($row->ID);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger btn-xs"> Delete</a></div>
+                                                 <a href="manage-students.php?delid=<?php echo ($row->ID);?>" onclick="return confirm('Do you really want to Delete ?');" class="btn btn-danger btn-xs"> Delete</a></div>
                             </td> 
                           </tr><?php $cnt=$cnt+1;}} ?>
                         </tbody>

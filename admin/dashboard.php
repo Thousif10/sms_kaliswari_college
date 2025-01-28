@@ -46,7 +46,7 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
                     <div class="row">
                       <div class="col-md-12">
                         <div class="d-sm-flex align-items-baseline report-summary-header">
-                          <h5 class="font-weight-semibold">Report Summary</h5> <span class="ml-auto">Updated Report</span> <button class="btn btn-icons border-0 p-2"><i class="icon-refresh"></i></button>
+                          <h5 class="font-weight-semibold">Student Summary</h5> <span class="ml-auto">Updated Report</span> <button class="btn btn-icons border-0 p-2"><i class="icon-refresh"></i></button>
                         </div>
                       </div>
                     </div>
@@ -54,76 +54,76 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
                       <div class=" col-md-6 col-xl report-inner-card">
                         <div class="inner-card-text">
                            <?php 
-                        $sql1 ="SELECT * from  tblclass";
+                        $sql1 ="SELECT * from  tblstudent";
 $query1 = $dbh -> prepare($sql1);
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$totclass=$query1->rowCount();
+$totstu=$query1->rowCount();
 ?>
-                          <span class="report-title">Total Class</span>
-                          <h4><?php echo htmlentities($totclass);?></h4>
-                          <a href="manage-class.php"><span class="report-count"> View Classes</span></a>
-                        </div>
-                        <div class="inner-card-icon bg-success">
-                          <i class="icon-book-open"></i>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-xl report-inner-card">
-                        <div class="inner-card-text">
-                          <?php 
-                        $sql2 ="SELECT * from  tblstudent";
-$query2 = $dbh -> prepare($sql2);
-$query2->execute();
-$results2=$query2->fetchAll(PDO::FETCH_OBJ);
-$totstu=$query2->rowCount();
-?>
-                          <span class="report-title">Total Students</span>
+                          <span class="report-title">BCA I</span>
                           <h4><?php echo htmlentities($totstu);?></h4>
                           <a href="manage-students.php"><span class="report-count"> View Students</span></a>
                         </div>
-                        <div class="inner-card-icon bg-danger">
-                          <i class="icon-user"></i>
+                        <div class="inner-card-icon bg-success">
+                          <i class="icon-people"></i>
                         </div>
                       </div>
                       <div class="col-md-6 col-xl report-inner-card">
                         <div class="inner-card-text">
                           <?php 
-                        $sql3 ="SELECT * from  tblnotice";
+                        $sql2 ="SELECT * from  tblstudent2";
+$query2 = $dbh -> prepare($sql2);
+$query2->execute();
+$results2=$query2->fetchAll(PDO::FETCH_OBJ);
+$totstu2=$query2->rowCount();
+?>
+                          <span class="report-title">BCA II</span>
+                          <h4><?php echo htmlentities($totstu2);?></h4>
+                          <a href="manage-students-BCA2.php"><span class="report-count"> View Students</span></a>
+                        </div>
+                        <div class="inner-card-icon bg-danger">
+                          <i class="icon-people"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <?php 
+                        $sql3 ="SELECT * from  tblstudent3";
 $query3 = $dbh -> prepare($sql3);
 $query3->execute();
 $results3=$query3->fetchAll(PDO::FETCH_OBJ);
-$totnotice=$query3->rowCount();
+$totstu3=$query3->rowCount();
 ?>
-                          <span class="report-title">Total Class Notice</span>
-                          <h4><?php echo htmlentities($totnotice);?></h4>
-                          <a href="manage-notice.php"><span class="report-count"> View Notices</span></a>
+                          <span class="report-title">BCA III</span>
+                          <h4><?php echo htmlentities($totstu3);?></h4>
+                          <a href="manage-students-BCA3.php"><span class="report-count"> View Students</span></a>
                         </div>
                         <div class="inner-card-icon bg-warning">
-                          <i class="icon-doc"></i>
+                          <i class="icon-people"></i>
                         </div>
                       </div>
-                      <div class="col-md-6 col-xl report-inner-card">
-                        <div class="inner-card-text">
+                      <!-- <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">  --> 
                           <?php 
-                        $sql4 ="SELECT * from  tblpublicnotice";
+                        $sql4 ="SELECT * from  tblstudent3";
 $query4 = $dbh -> prepare($sql4);
 $query4->execute();
 $results4=$query4->fetchAll(PDO::FETCH_OBJ);
 $totpublicnotice=$query4->rowCount();
 ?>
-                          <span class="report-title">Total Public Notice</span>
+                          <!-- <span class="report-title">Total Public Notice</span>
                           <h4><?php echo htmlentities($totpublicnotice);?></h4>
                           <a href="manage-public-notice.php"><span class="report-count"> View PublicNotices</span></a>
-                        </div>
-                        <div class="inner-card-icon bg-primary">
+                        </div> -->
+                        <!-- <div class="inner-card-icon bg-primary">
                           <i class="icon-doc"></i>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
 <hr />
-  <div class="row report-inner-cards-wrapper">
+  <!-- <div class="row report-inner-cards-wrapper">
                       <div class="col-md-3 col-xs report-inner-card">
-                        <div class="inner-card-text">
+                        <div class="inner-card-text"> -->
                            <?php 
                         $sql1 ="SELECT * from  tblhomework";
 $query1 = $dbh -> prepare($sql1);
@@ -131,7 +131,7 @@ $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totalhw=$query1->rowCount();
 ?>
-                          <span class="report-title">Total Homeworks </span>
+                          <!-- <span class="report-title">Total Homeworks </span>
                           <h4><?php echo htmlentities($totalhw);?></h4>
                           <a href="manage-homeworks.php"><span class="report-count"> View Homework</span></a>
                         </div>
@@ -139,7 +139,7 @@ $totalhw=$query1->rowCount();
                           <i class="icon-doc"></i>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
 
 

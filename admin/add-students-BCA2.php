@@ -21,7 +21,7 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
  $uname=$_POST['uname'];
  $password=md5($_POST['password']);
  $image=$_FILES["image"]["name"];
- $ret="select UserName from tblstudent where UserName=:uname || StuID=:stuid";
+ $ret="select UserName from tblstudent2 where UserName=:uname || StuID=:stuid";
  $query= $dbh -> prepare($ret);
 $query->bindParam(':uname',$uname,PDO::PARAM_STR);
 $query->bindParam(':stuid',$stuid,PDO::PARAM_STR);
@@ -39,7 +39,7 @@ else
 {
 $image=md5($image).time().$extension;
  move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$image);
-$sql="insert into tblstudent(StudentName,StudentEmail,StudentClass,Gender,DOB,StuID,FatherName,MotherName,ContactNumber,AltenateNumber,Address,UserName,Password,Image)values(:stuname,:stuemail,:stuclass,:gender,:dob,:stuid,:fname,:mname,:connum,:altconnum,:address,:uname,:password,:image)";
+$sql="insert into tblstudent2(StudentName,StudentEmail,StudentClass,Gender,DOB,StuID,FatherName,MotherName,ContactNumber,AltenateNumber,Address,UserName,Password,Image)values(:stuname,:stuemail,:stuclass,:gender,:dob,:stuid,:fname,:mname,:connum,:altconnum,:address,:uname,:password,:image)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':stuname',$stuname,PDO::PARAM_STR);
 $query->bindParam(':stuemail',$stuemail,PDO::PARAM_STR);
@@ -106,7 +106,7 @@ echo "<script>alert('Username or Student Id  already exist. Please try again');<
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> BCA I </h3>
+              <h3 class="page-title"> BCA II </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
@@ -172,7 +172,7 @@ foreach($result2 as $row1)
                       </div>
                       <div class="form-group">
                         <label for="exampleInputName1">Student Photo</label>
-                        <input type="file" name="image" value="" class="form-control-file" accept="image/*" require>
+                        <input type="file" name="image" value="" class="form-control" required='true'>
                       </div>
                     </div>
                      <div class="col-6">

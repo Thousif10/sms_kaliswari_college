@@ -19,7 +19,19 @@ if($query->rowCount() > 0)
 foreach($results as $row)
 {               ?>
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
-          <h5 class="mb-0 font-weight-medium d-none d-lg-flex"><?php  echo htmlentities($row->AdminName);?> Welcome dashboard!</h5>
+          <!-- <h5 class="mb-0 font-weight-medium d-none d-lg-flex"><?php  echo htmlentities($row->AdminName);?> Welcome dashboard!</h5> -->
+           <!-- <div class="college-name-container d-none d-lg-flex flex-column" style="color: white;">
+    <h3 class="mb-0 font-weight-medium">SRI KALISWARI COLLEGE</h3>
+    <h5 class="mb-1 font-weight-light">(Autonomous), SIVAKASI</h5>
+  </div> -->
+  <img src="includes/headerlogo.png" 
+       srcset="includes/headerlogo.png 1x" 
+       width="999" 
+       height="54" 
+       alt="Sri Kaliswari College – Autonomous Logo" 
+       class="fusion-standard-logo">
+ 
+  
           <ul class="navbar-nav navbar-nav-right ml-auto">
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
               <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
